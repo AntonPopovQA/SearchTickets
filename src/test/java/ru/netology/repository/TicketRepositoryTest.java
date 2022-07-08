@@ -56,7 +56,8 @@ public class TicketRepositoryTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
-// Исключения
+
+    // Исключения
     @Test
     public void shouldRemoveByIdNotFoundException() {
         repo.save(ticket3);
@@ -67,6 +68,7 @@ public class TicketRepositoryTest {
             repo.removeById(5);
         });
     }
+
     @Test
     public void shouldSaveAlreadyExistsException() {
         repo.save(ticket1);
