@@ -1,13 +1,18 @@
 package ru.netology.manager;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Tickets;
+import ru.netology.comparator.TicketsComparator;
 import ru.netology.repository.TicketsRepository;
+
+
 
 public class TicketManagerTest {
     TicketsRepository repo = new TicketsRepository();
     TicketsManager manager = new TicketsManager(repo);
+    TicketsComparator comparator = new TicketsComparator();
 
     Tickets ticket1 = new Tickets(10, 1_000, "LED", "MSQ", 120);
     Tickets ticket2 = new Tickets(11, 2_000, "LED", "NYO", 130);
@@ -28,7 +33,7 @@ public class TicketManagerTest {
     public void shouldSearchOneTicket() {
 
         Tickets[] expected = {ticket1};
-        Tickets[] actual = manager.search("LED", "MSQ");
+        Tickets[] actual = manager.search("LED", "MSQ", comparator);
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -36,7 +41,7 @@ public class TicketManagerTest {
     public void shouldSearchTwoTickets() {
 
         Tickets[] expected = {ticket2, ticket3, ticket5};
-        Tickets[] actual = manager.search("LED", "NYO");
+        Tickets[] actual = manager.search("LED", "NYO", comparator);
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -44,7 +49,7 @@ public class TicketManagerTest {
     public void shouldNoTickets() {
 
         Tickets[] expected = {};
-        Tickets[] actual = manager.search("LED", "CEK");
+        Tickets[] actual = manager.search("LED", "CEK", comparator);
 
         Assertions.assertArrayEquals(expected, actual);
     }
