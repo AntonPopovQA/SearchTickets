@@ -10,9 +10,9 @@ public class TicketManagerTest {
     TicketsManager manager = new TicketsManager(repo);
 
     Tickets ticket1 = new Tickets(10, 1_000, "LED", "MSQ", 120);
-    Tickets ticket2 = new Tickets(11, 2_000, "LED", "HEL", 130);
+    Tickets ticket2 = new Tickets(11, 2_000, "LED", "NYO", 130);
     Tickets ticket3 = new Tickets(12, 3_000, "LED", "NYO", 160);
-    Tickets ticket4 = new Tickets(13, 4_000, "LED", "SYX", 200);
+    Tickets ticket4 = new Tickets(13, 4_000, "LED", "SYX", 180);
     Tickets ticket5 = new Tickets(14, 5_000, "LED", "NYO", 200);
 
     @BeforeEach
@@ -35,7 +35,7 @@ public class TicketManagerTest {
     @Test
     public void shouldSearchTwoTickets() {
 
-        Tickets[] expected = {ticket3, ticket5};
+        Tickets[] expected = {ticket2, ticket3, ticket5};
         Tickets[] actual = manager.search("LED", "NYO");
 
         Assertions.assertArrayEquals(expected, actual);
